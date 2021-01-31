@@ -22,22 +22,17 @@ let handler  = async (m, { conn, usedPrefix: _p }) => {
     let uptime = clockString(_uptime)
     let totalreg = Object.keys(global.DATABASE._data.users).length
     let tags = {
-      'main': 'Main',
-      'info': 'Info BOT',
+      'main': 'Menu Utama',
+      'info': 'Informasi BOT',
       'xp': 'Exp & Limit',
-      'sticker': 'Sticker',
+      'sticker': 'Pembuat Sticker',
       'kerang': 'Kerang Ajaib',
-      'quotes': 'Quotes',
-      'admin': 'Admin',
-      'group': 'Group',
-      'internet': 'Internet',
-      'downloader': 'Downloader',
-      'tools': 'Tools',
-      'jadibot': 'Jadi Bot',
-      'owner': 'Owner',
-      'host': 'Host',
-      'advanced': 'Advanced',
-      '': 'No Category',
+      'quotes': 'Pencari Quotes',
+      'admin': 'Menu KhususAdmin',
+      'group': 'Menu Untuk Group',
+      'internet': 'Pencarian di Internet',
+      'downloader': 'Downloader Youtube',
+      'tools': 'Menu Lainnya',
     }
     for (let plugin of Object.values(global.plugins))
       if (plugin && 'tags' in plugin)
@@ -59,10 +54,10 @@ let handler  = async (m, { conn, usedPrefix: _p }) => {
           if (menu.help) groups[tag].push(menu)
     }
     conn.menu = conn.menu ? conn.menu : {}
-    let before = conn.menu.before || `${conn.getName(conn.user.jid)} • Bot\n\nHai, %name!\n\nTotal: *%exp XP*\nLimit Anda: *%limit Limit*\nTanggal: *%week, %date*\n Waktu: *%time*\n_Uptime: %uptime_\n  %totalreg User in database\nSrc: Arya *[Recode]*\n%readmore`
-    let header = conn.menu.header || '•›「 %category 」'
+    let before = conn.menu.before || `${conn.getName(conn.user.jid)} • Bot\n\n🢂Hai, %name\n\nTotal Exp %name : *%exp XP*\n🢂Limit Tersisa: *%limit Limit*\n\n🢂Tanggal: *%week, %date*\n🢂Waktu: *%time*\n_Uptime: %uptime_\n\n🢂Total User Registrasi : *%totalreg User\n*\n%readmore`
+    let header = conn.menu.header || '➦「 %category 」\n'
     let body   = conn.menu.body   || ' %cmd%islimit'
-    let footer = conn.menu.footer || '╰═\n'
+    let footer = conn.menu.footer || '➥\n\n'
     let after  = conn.menu.after  || conn.user.jid == global.conn.user.jid ? '' : `\nPowered by: ${global.conn.user.jid.split`@`[0]}`
     let _text  = before + '\n'
     for (let tag in groups) {
